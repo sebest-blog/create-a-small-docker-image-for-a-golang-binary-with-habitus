@@ -1,0 +1,15 @@
+build:
+    version: 2016-03-14
+    steps:
+        builder:
+            name: builder
+            dockerfile: Dockerfile.builder
+            artifacts:
+                - /work/main
+                - /work/zoneinfo.tar.gz
+                - /etc/ssl/certs/ca-certificates.crt
+        deployment:
+            name: gotest
+            dockerfile: Dockerfile.deployment
+            depends_on:
+                - builder
